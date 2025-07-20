@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fruit & Vegetable Powders: A Business Blueprint</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <!--
+    Narrative Plan:
+    1.  Introduction/Hook: Grab attention with the massive market size and growth potential.
+    2.  Market Size & Forecast: Visualize the projected growth of the global market to establish scale.
+    3.  Geographic Demand: Show where the market is largest and where it's growing fastest.
+    4.  Business Blueprint - Investment: Break down the initial capital required for a small-scale unit in India.
+    5.  Business Blueprint - Government Support: Highlight key Indian government schemes available.
+    6.  The Value Chain: Illustrate the entire process from sourcing raw materials to selling the final product.
+    7.  Sales Channels & Buyers: Detail the B2B vs. B2C opportunities and key customer segments.
+    8.  First-Year Profit Outlook: Provide a realistic financial projection for a startup.
+    9.  Conclusion: A concluding thought to inspire action.
+
+    Visualization Choices:
+    - Data Point: Global Market Growth -> Goal: Change -> Chosen Visualization: Line Chart (Chart.js) -> Justification: Ideal for showing a clear trend over a period of years. NO SVG used.
+    - Data Point: Regional Market Share -> Goal: Compare/Composition -> Chosen Visualization: Donut Chart (Chart.js) -> Justification: Excellent for showing the proportional split of a whole. Highlights dominant regions. NO SVG used.
+    - Data Point: Initial Investment Breakdown -> Goal: Compare/Inform -> Chosen Visualization: Horizontal Bar Chart (Chart.js) -> Justification: Allows for easy comparison between different cost components. NO SVG used.
+    - Data Point: The Value Chain Process -> Goal: Organize/Process -> Chosen Visualization: HTML/CSS Flowchart -> Justification: Clearly illustrates a linear process using simple, styled divs and text, avoiding any prohibited SVG or Mermaid JS.
+    - Data Point: Sales Channel Breakdown -> Goal: Compare/Composition -> Chosen Visualization: Stacked Bar Chart (Chart.js) -> Justification: Effectively shows the primary market split (B2B/B2C) while also revealing the composition within each channel. NO SVG used.
+    - Data Point: First-Year Financials -> Goal: Inform -> Chosen Visualization: "Big Number" Cards (HTML/CSS) -> Justification: Emphasizes the most critical financial metrics for quick comprehension. NO SVG used.
+
+    Color Palette Selection:
+    - Palette Name: Energetic & Playful
+    - HEX Codes: #FF6B6B (Red), #FFD166 (Yellow), #06D6A0 (Green), #118AB2 (Blue), #073B4C (Dark Blue/Text)
+
+    Constraint Confirmation:
+    - NEITHER Mermaid JS NOR SVG were used anywhere in this output. All charts are rendered on HTML Canvas elements via Chart.js, and diagrams are constructed using standard HTML and Tailwind CSS.
+    -->
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #f8fafc; }
+        .chart-container { position: relative; width: 100%; max-width: 600px; margin-left: auto; margin-right: auto; height: 350px; max-height: 400px; }
+        @media (min-width: 768px) { .chart-container { height: 400px; } }
+        .brand-text { color: #073B4C; }
+        .accent-red { color: #FF6B6B; }
+        .accent-yellow { color: #FFD166; }
+        .accent-green { color: #06D6A0; }
+        .accent-blue { color: #118AB2; }
+        .bg-accent-red { background-color: #FF6B6B; }
+        .bg-accent-yellow { background-color: #FFD166; }
+        .bg-accent-green { background-color: #06D6A0; }
+        .bg-accent-blue { background-color: #118AB2; }
+        .bg-brand-dark { background-color: #073B4C; }
+        .card { background-color: white; border-radius: 0.75rem; box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1); padding: 1.5rem; transition: transform 0.3s ease, box-shadow 0.3s ease; }
+        .card:hover { transform: translateY(-5px); box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1); }
+        .flow-step { text-align: center; display: flex; flex-direction: column; align-items: center; }
+        .flow-arrow { font-size: 2.5rem; line-height: 1; color: #cbd5e1; margin: 0 1rem; align-self: center; }
+        @media (max-width: 767px) { .flow-arrow { transform: rotate(90deg); margin: 1rem 0; } }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <div class="max-w-7xl mx-auto p-4 sm:p-6 lg:p-8">
+        
+        <header class="text-center my-12">
+            <h1 class="text-4xl md:text-6xl font-black brand-text leading-tight">The Fruit & Vegetable Powder Market</h1>
+            <p class="mt-4 text-xl text-gray-600">A Complete Business Blueprint for Aspiring Entrepreneurs in India</p>
+        </header>
+
+        <main class="space-y-16">
+
+            <section class="card text-center p-8">
+                <p class="text-2xl font-semibold brand-text">Global Market Projection</p>
+                <p class="text-7xl font-black accent-green my-2">$14.8 Billion</p>
+                <p class="text-xl text-gray-600">Expected global market value by 2028, growing at a CAGR of 7.2%</p>
+            </section>
+            
+            <section id="market-size" class="w-full">
+                <div class="card md:col-span-2">
+                    <h2 class="text-2xl font-bold brand-text text-center mb-2">A Market Ripe for Growth</h2>
+                    <p class="text-center text-gray-600 mb-6 max-w-3xl mx-auto">The demand for natural, nutrient-dense ingredients is surging. Fruit and vegetable powders offer a convenient, shelf-stable solution for consumers and food manufacturers, driving significant market expansion.</p>
+                    <div class="chart-container">
+                        <canvas id="marketForecastChart"></canvas>
+                    </div>
+                </div>
+            </section>
+
+            <div class="grid grid-cols-1 md:grid-cols-5 gap-8 items-start">
+                <div class="md:col-span-3 card">
+                    <h2 class="text-2xl font-bold brand-text text-center mb-6">Where is the Demand? Regional Market Share</h2>
+                     <p class="text-center text-gray-600 mb-6 max-w-2xl mx-auto">North America and Europe currently dominate, but the Asia-Pacific region, led by India and China, is the fastest-growing market due to rising health consciousness and a booming food processing industry.</p>
+                    <div class="chart-container">
+                        <canvas id="regionalDemandChart"></canvas>
+                    </div>
+                </div>
+                <div class="md:col-span-2 card">
+                     <h2 class="text-2xl font-bold brand-text text-center mb-6">Startup Investment (Small-Scale Unit)</h2>
+                    <p class="text-center text-gray-600 mb-6">Estimated initial capital required to establish a small-scale production facility in India. Costs are approximate and can vary by location and equipment quality.</p>
+                    <div class="chart-container h-96">
+                        <canvas id="investmentChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <section id="govt-schemes">
+                <h2 class="text-3xl font-bold brand-text text-center mb-8">Government Support for Your Venture</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="card">
+                        <h3 class="font-bold text-xl accent-blue">PMFME Scheme</h3>
+                        <p class="mt-2 text-gray-600">The Pradhan Mantri Formalisation of Micro food processing Enterprises (PMFME) Scheme provides financial, technical, and business support. Key feature includes a credit-linked capital subsidy of 35% of the eligible project cost, with a maximum ceiling of ₹10 lakh per unit.</p>
+                    </div>
+                    <div class="card">
+                        <h3 class="font-bold text-xl accent-red">PMKSY (CEFPPC)</h3>
+                        <p class="mt-2 text-gray-600">The Pradhan Mantri Kisan Sampada Yojana (PMKSY) includes the 'Creation/Expansion of Food Processing & Preservation Capacities' (CEFPPC) sub-scheme. It offers grants-in-aid for setting up new units, providing 35% of the project cost for general areas and 50% for difficult areas/aspirational districts.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="value-chain">
+                 <h2 class="text-3xl font-bold brand-text text-center mb-8">The Journey From Farm to Powder</h2>
+                 <div class="card p-8">
+                    <div class="flex flex-col md:flex-row justify-center items-center">
+                        <div class="flow-step">
+                             <div class="w-24 h-24 bg-accent-green rounded-full flex items-center justify-center text-white text-4xl mb-2">🌿</div>
+                             <h3 class="font-bold">1. Sourcing</h3>
+                             <p class="text-sm text-gray-500">Direct from Farmers, FPOs, or Local Mandis</p>
+                        </div>
+                        <div class="flow-arrow">→</div>
+                         <div class="flow-step">
+                             <div class="w-24 h-24 bg-accent-yellow rounded-full flex items-center justify-center text-white text-4xl mb-2">⚙️</div>
+                             <h3 class="font-bold">2. Processing</h3>
+                             <p class="text-sm text-gray-500">Wash, Dry, Pulverize & Sieve</p>
+                        </div>
+                        <div class="flow-arrow">→</div>
+                         <div class="flow-step">
+                             <div class="w-24 h-24 bg-accent-red rounded-full flex items-center justify-center text-white text-4xl mb-2">📦</div>
+                             <h3 class="font-bold">3. Packaging</h3>
+                             <p class="text-sm text-gray-500">Airtight, moisture-proof packaging</p>
+                        </div>
+                         <div class="flow-arrow">→</div>
+                        <div class="flow-step">
+                             <div class="w-24 h-24 bg-accent-blue rounded-full flex items-center justify-center text-white text-4xl mb-2">📈</div>
+                             <h3 class="font-bold">4. Sales</h3>
+                             <p class="text-sm text-gray-500">B2B Clients & B2C Consumers</p>
+                        </div>
+                    </div>
+                 </div>
+            </section>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+                <div class="card">
+                    <h2 class="text-2xl font-bold brand-text text-center mb-6">Sales Channels & Major Buyers</h2>
+                    <p class="text-center text-gray-600 mb-6">A diversified approach targeting both businesses and direct consumers is key. B2B offers volume, while B2C provides higher margins and brand visibility.</p>
+                    <div class="chart-container h-96">
+                        <canvas id="salesChannelsChart"></canvas>
+                    </div>
+                </div>
+                <div id="profit-outlook" class="card">
+                    <h2 class="text-2xl font-bold brand-text text-center mb-6">First-Year Financial Outlook</h2>
+                    <p class="text-center text-gray-600 mb-6">A conservative projection for a small-scale startup in its first full year of operation. Profitability is highly dependent on operational efficiency, sourcing costs, and sales strategy.</p>
+                    <div class="space-y-6 pt-5">
+                        <div class="text-center p-6 bg-green-50 rounded-lg">
+                             <p class="text-lg font-semibold brand-text">Projected Revenue</p>
+                             <p class="text-5xl font-black accent-green">₹50 Lakh</p>
+                        </div>
+                         <div class="text-center p-6 bg-red-50 rounded-lg">
+                             <p class="text-lg font-semibold brand-text">Estimated Costs</p>
+                             <p class="text-5xl font-black accent-red">₹42 Lakh</p>
+                        </div>
+                         <div class="text-center p-6 bg-blue-50 rounded-lg">
+                             <p class="text-lg font-semibold brand-text">Net Profit (Year 1)</p>
+                             <p class="text-5xl font-black accent-blue">₹8 Lakh</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </main>
+
+        <footer class="text-center mt-16 py-8 border-t border-gray-200">
+            <p class="text-xl font-bold brand-text">Tap into Nature's Potential.</p>
+            <p class="text-gray-500 mt-2">This infographic provides a data-driven overview for entrepreneurs. Conduct detailed due diligence for your specific business plan.</p>
+        </footer>
+
+    </div>
+
+    <script>
+        const chartColors = {
+            red: '#FF6B6B',
+            yellow: '#FFD166',
+            green: '#06D6A0',
+            blue: '#118AB2',
+            darkBlue: '#073B4C',
+            lightGray: '#e2e8f0',
+        };
+
+        const tooltipTitleCallback = function(tooltipItems) {
+            const item = tooltipItems[0];
+            let label = item.chart.data.labels[item.dataIndex];
+            if (Array.isArray(label)) {
+              return label.join(' ');
+            } else {
+              return label;
+            }
+        };
+
+        function wrapLabels(label) {
+            const maxLen = 16;
+            if (typeof label === 'string' && label.length > maxLen) {
+                const words = label.split(' ');
+                const lines = [];
+                let currentLine = '';
+                words.forEach(word => {
+                    if ((currentLine + word).length > maxLen) {
+                        lines.push(currentLine.trim());
+                        currentLine = '';
+                    }
+                    currentLine += word + ' ';
+                });
+                lines.push(currentLine.trim());
+                return lines;
+            }
+            return label;
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const defaultFont = { family: 'Inter', size: 14 };
+            Chart.defaults.font.family = 'Inter';
+            Chart.defaults.plugins.legend.position = 'bottom';
+            Chart.defaults.plugins.tooltip.backgroundColor = 'rgba(7, 59, 76, 0.9)';
+            Chart.defaults.plugins.tooltip.titleFont = { size: 16, weight: 'bold' };
+            Chart.defaults.plugins.tooltip.bodyFont = { size: 14 };
+            Chart.defaults.plugins.tooltip.padding = 12;
+            Chart.defaults.plugins.tooltip.cornerRadius = 8;
+            
+            new Chart(document.getElementById('marketForecastChart'), {
+                type: 'line',
+                data: {
+                    labels: ['2023', '2024', '2025', '2026', '2027', '2028'],
+                    datasets: [{
+                        label: 'Global Market Value (in Billion USD)',
+                        data: [9.5, 10.2, 11.1, 12.0, 13.4, 14.8],
+                        borderColor: chartColors.green,
+                        backgroundColor: 'rgba(6, 214, 160, 0.1)',
+                        fill: true,
+                        tension: 0.4,
+                        borderWidth: 3,
+                        pointBackgroundColor: chartColors.green,
+                        pointRadius: 5
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: false,
+                            ticks: { callback: value => `$${value}B` },
+                            grid: { color: chartColors.lightGray }
+                        },
+                         x: { grid: { display: false } }
+                    },
+                    plugins: {
+                        tooltip: { callbacks: { title: tooltipTitleCallback } }
+                    }
+                }
+            });
+
+            new Chart(document.getElementById('regionalDemandChart'), {
+                type: 'doughnut',
+                data: {
+                    labels: ['North America', 'Europe', ['Asia-Pacific', '(Fastest Growing)'], 'Rest of World'],
+                    datasets: [{
+                        label: 'Market Share',
+                        data: [35, 30, 25, 10],
+                        backgroundColor: [chartColors.blue, chartColors.green, chartColors.yellow, chartColors.red],
+                        borderColor: '#fff',
+                        borderWidth: 4,
+                        hoverOffset: 15
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    cutout: '60%',
+                     plugins: {
+                        tooltip: { callbacks: { title: tooltipTitleCallback } },
+                        legend: { labels: { generateLabels: chart => {
+                            const data = chart.data;
+                            if (data.labels.length && data.datasets.length) {
+                                return data.labels.map((label, i) => {
+                                    const meta = chart.getDatasetMeta(0);
+                                    const style = meta.controller.getStyle(i);
+                                    return {
+                                        text: Array.isArray(label) ? label.join(' ') : label,
+                                        fillStyle: style.backgroundColor,
+                                        strokeStyle: style.borderColor,
+                                        lineWidth: style.borderWidth,
+                                        hidden: isNaN(data.datasets[0].data[i]) || meta.data[i].hidden,
+                                        index: i
+                                    };
+                                });
+                            }
+                            return [];
+                        }}}
+                    }
+                }
+            });
+            
+            const investmentLabels = ['Machinery (Driers, Pulverizer)', 'Land & Building (Rental/Lease)', 'Licenses & Registration', 'Working Capital (Raw Material, etc)', 'Marketing & Other'].map(wrapLabels);
+            new Chart(document.getElementById('investmentChart'), {
+                type: 'bar',
+                data: {
+                    labels: investmentLabels,
+                    datasets: [{
+                        label: 'Cost (in Lakh INR)',
+                        data: [10, 5, 2, 6, 2],
+                        backgroundColor: [chartColors.red, chartColors.yellow, chartColors.blue, chartColors.green, chartColors.lightGray],
+                        borderRadius: 5,
+                        borderWidth: 0
+                    }]
+                },
+                options: {
+                    indexAxis: 'y',
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        x: {
+                            beginAtZero: true,
+                            ticks: { callback: value => `₹${value}L` },
+                             grid: { display: false }
+                        },
+                        y: { grid: { color: chartColors.lightGray } }
+                    },
+                     plugins: {
+                        tooltip: { callbacks: { title: tooltipTitleCallback } },
+                        legend: { display: false }
+                    }
+                }
+            });
+
+            const salesLabels = ['Food & Beverage Industry', 'Nutraceuticals & Supplements', 'Food Service (HoReCa)', 'Retail & E-commerce', 'Direct to Consumer (D2C)'].map(wrapLabels);
+            new Chart(document.getElementById('salesChannelsChart'), {
+                type: 'bar',
+                data: {
+                    labels: ['B2B Channels', 'B2C Channels'],
+                    datasets: [
+                        { label: 'Food & Beverage', data: [65, 0], backgroundColor: chartColors.blue },
+                        { label: 'Nutraceuticals', data: [35, 0], backgroundColor: chartColors.red },
+                        { label: 'Food Service', data: [15, 0], backgroundColor: chartColors.darkBlue },
+                        { label: 'Retail/E-commerce', data: [0, 70], backgroundColor: chartColors.green },
+                        { label: 'D2C Website', data: [0, 30], backgroundColor: chartColors.yellow }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        x: { stacked: true, grid: { display: false } },
+                        y: { stacked: true, grid: { color: chartColors.lightGray }, ticks: { callback: value => `${value}%` } }
+                    },
+                    plugins: {
+                        tooltip: { 
+                            callbacks: { title: tooltipTitleCallback },
+                            mode: 'index', 
+                            intersect: false 
+                        },
+                         legend: {
+                            labels: {
+                                generateLabels: chart => {
+                                    const datasets = chart.data.datasets;
+                                    return datasets.map((ds, i) => ({
+                                        text: ds.label,
+                                        fillStyle: ds.backgroundColor,
+                                        hidden: !chart.isDatasetVisible(i),
+                                        datasetIndex: i
+                                    }));
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
